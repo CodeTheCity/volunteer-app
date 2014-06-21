@@ -10,7 +10,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Skill_name</th>
+				<th>Skill</th>
 				<th>&nbsp;</th>
 			</tr>
 		</thead>
@@ -18,7 +18,7 @@
 		<tbody>
 			@foreach ($skills as $skill)
 				<tr>
-					<td>{{{ $skill->skill_name }}}</td>
+					<td><a href="/skills/{{{ $skill->id }}}">{{{ $skill->skill_name }}}</a></td>
                     <td>
                         {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('skills.destroy', $skill->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}

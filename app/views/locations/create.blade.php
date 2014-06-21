@@ -19,16 +19,16 @@
 {{ Form::open(array('route' => 'locations.store', 'class' => 'form-horizontal')) }}
 
         <div class="form-group">
-            {{ Form::label('location_name', 'Location_name:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('location_name', 'Name:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('location_name', Input::old('location_name'), array('class'=>'form-control', 'placeholder'=>'Location_name')) }}
+              {{ Form::text('location_name', Input::old('location_name'), array('class'=>'form-control', 'placeholder'=>'Name')) }}
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('city_id', 'City_id:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('city_id', 'City:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('city_id', Input::old('city_id'), array('class'=>'form-control', 'placeholder'=>'City_id')) }}
+              {{ Form::select('city_id',$cities) }}<br/>
             </div>
         </div>
 

@@ -51,10 +51,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
-	public function guestlists()
-    {
-        return $this->belongsToMany('Guestlist', 'guestlist_user')->withPivot('id');
-    } 
 
     public function getRememberToken()
 	{

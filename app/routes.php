@@ -61,6 +61,22 @@ Route::get('/random', function()
 
 Route::resource('skills', 'SkillsController');
 
+Route::post('/user/{id}/add', array('as' => 'skills.add', 'uses' => 'SkillsController@useradd'));
+
 Route::resource('locations', 'LocationsController');
 
 Route::resource('opportunities', 'OpportunitiesController');
+
+Route::group(array('prefix' => 'v1', 'before' => 'api.auth|api.limit'), function()
+{
+
+	Route::get('locations', function()
+	{
+		$locations = Auth::user()->locations;
+
+		return Response::json($locations->toArray());
+	});
+
+});
+
+

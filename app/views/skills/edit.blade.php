@@ -19,9 +19,9 @@
 {{ Form::model($skill, array('class' => 'form-horizontal', 'method' => 'PATCH', 'route' => array('skills.update', $skill->id))) }}
 
         <div class="form-group">
-            {{ Form::label('skill_name', 'Skill_name:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('skill_name', 'Skill:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('skill_name', Input::old('skill_name'), array('class'=>'form-control', 'placeholder'=>'Skill_name')) }}
+              {{ Form::text('skill_name', Input::old('skill_name'), array('class'=>'form-control', 'placeholder'=>'Skill')) }}
             </div>
         </div>
 

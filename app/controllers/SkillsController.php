@@ -128,4 +128,28 @@ class SkillsController extends BaseController {
 		return Redirect::route('skills.index');
 	}
 
+	public function useradd($id)
+	{
+		$input = Input::all();
+
+		$user_id = $input['user_id'];
+
+		$random = date('Yms') . rand(10*45, 19*98);
+
+		$stamp_id = DB::table('guestlist_user')->insertGetId(array('user_id' => $user_id, 'guestlist_id' => $id, 'reference' => $random, 'attended' => '0'));
+
+		$data['email'] = Sentry::getUser()->email;
+		$data['reference'] = $random;
+		$data['guestlist_id'] = $id;
+		$data['stamp_id'] = $stamp_id;
+
+		Mail::send('emails.stamp.add', $data, function($m) use($data)
+		{
+		    $m->to($data['email'])->subject('Confirmation of Guestlist');
+		});
+
+		Session::flash('success', 'You have been added to the guestlist. Check your emails');
+		return Redirect::route('guestlists.show', $id);
+	}
+
 }

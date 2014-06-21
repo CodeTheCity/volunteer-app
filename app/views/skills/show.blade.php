@@ -2,14 +2,14 @@
 
 @section('content')
 
-<h1>Show Skill</h1>
+<h1>Skill</h1>
 
 <p>{{ link_to_route('skills.index', 'Return to All skills', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
 
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Skill_name</th>
+			<th>Skill</th>
 		</tr>
 	</thead>
 

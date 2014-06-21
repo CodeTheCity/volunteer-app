@@ -26,9 +26,12 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('city_id', 'City_id:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('city_id', 'City:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('city_id', Input::old('city_id'), array('class'=>'form-control', 'placeholder'=>'City_id')) }}
+
+                 {{ Form::select('city_id',$cities) }}<br/>
+                {{ ($errors->has('city_id') ?  $errors->first('city') : '') }}
+
             </div>
         </div>
 

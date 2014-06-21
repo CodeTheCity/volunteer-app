@@ -11,16 +11,30 @@
 |
 */
 
+
 App::before(function($request)
-{
-	//
-});
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        $statusCode = 204;
 
+        $headers = [
+            'Access-Control-Allow-Origin'      => '*',
+            'Access-Control-Allow-Methods'     => 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers'     => 'Origin, Content-Type, Accept, Authorization, X-Requested-With',
+            'Access-Control-Allow-Credentials' => 'true'
+        ];
 
-App::after(function($request, $response)
-{
-	//
-});
+        return Response::make(null, $statusCode, $headers);
+    }});
+
+    App::after(function($request, $response)
+    {
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Requested-With');
+        $response->headers->set('Access-Control-Allow-Credentials', 'true');
+        return $response;
+    });
 
 /*
 |--------------------------------------------------------------------------
@@ -82,8 +96,51 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
+
 	if (Session::token() != Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
+	}
+});
+/*
+|--------------------------------------------------------------------------
+| API Filters
+|--------------------------------------------------------------------------
+|
+| Authentication and rate limiting.
+|
+*/
+
+Route::filter('api.auth', function()
+{
+	if (!Request::getUser())
+	{
+		App::abort(401, 'A valid API key is required');
+	}
+
+	$user = User::where('api_key', '=', Request::getUser())->first();
+
+	if (!$user)
+	{
+		App::abort(401);
+	}
+
+	Auth::login($user);
+});
+
+Route::filter('api.limit', function()
+{
+	$key = sprintf('api:%s', Auth::user()->api_key);
+
+	// Create the key if it doesn't exist
+	Cache::add($key, 0, 60);
+
+	// Increment by 1
+	$count = Cache::increment($key);
+
+	// Fail if hourly requests exceeded
+	if ($count > Config::get('api.requests_per_hour'))
+	{
+		App::abort(403, 'Hourly request limit exceeded');
 	}
 });

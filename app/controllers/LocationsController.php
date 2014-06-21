@@ -33,7 +33,9 @@ class LocationsController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('locations.create');
+		$cities = City::orderBy('city_name')->lists('city_name', 'id');
+
+		return View::make('locations.create', compact('cities'));
 	}
 
 	/**
@@ -82,12 +84,14 @@ class LocationsController extends BaseController {
 	{
 		$location = $this->location->find($id);
 
+		$cities = City::orderBy('city_name')->lists('city_name', 'id');
+
 		if (is_null($location))
 		{
 			return Redirect::route('locations.index');
 		}
 
-		return View::make('locations.edit', compact('location'));
+		return View::make('locations.edit', compact('location', 'cities'));
 	}
 
 	/**

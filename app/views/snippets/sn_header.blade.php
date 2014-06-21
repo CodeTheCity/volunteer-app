@@ -8,7 +8,11 @@
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
+	    @if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
 	    <a href="{{ URL::to('/') }}" class="navbar-brand">Volunteer</a>
+	    @else
+	     <a href="{{ URL::to('/') }}" class="navbar-brand">Admin</a>
+	    @endif
 	  </div>
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -22,6 +26,7 @@
 				<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">Groups</a></li>
 				<li {{ (Request::is('skills*') ? 'class="active"' : '') }}><a href="{{ URL::to('/skills') }}">Skills</a></li>
 				<li {{ (Request::is('opportunities*') ? 'class="active"' : '') }}><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
+				<li {{ (Request::is('locations*') ? 'class="active"' : '') }}><a href="{{ URL::to('/locations') }}">Locations</a></li>
 			@endif 
 		</ul>
 		<ul class="nav pull-right navbar-nav">

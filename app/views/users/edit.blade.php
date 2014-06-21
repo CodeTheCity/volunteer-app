@@ -52,6 +52,19 @@ Profile</h4>
     </form>
 </div>
 
+<h4>My Skills</h4>
+<div class="well">
+
+
+    <form class="form-horizontal" action="{{ URL::to('users/skills') }}/{{ $user->id }}" method="post">
+        {{ Form::token() }}
+ <div class="form-actions">
+            <input class="btn-primary btn" type="submit" value="Add Skills"> 
+        </div>
+      </form>
+</div>
+
+
 <h4>Change Password</h4>
 <div class="well">
 	<form class="form-horizontal" action="{{ URL::to('users/changepassword') }}/{{ $user->id }}" method="post">

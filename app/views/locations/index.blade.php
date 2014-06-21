@@ -10,17 +10,14 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Location_name</th>
-				<th>City_id</th>
-				<th>&nbsp;</th>
+				<th>Location</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			@foreach ($locations as $location)
 				<tr>
-					<td>{{{ $location->location_name }}}</td>
-					<td>{{{ $location->city_id }}}</td>
+					<td><a href="/locations/{{{ $location->id }}}">{{{ $location->location_name }}}</a></td>
                     <td>
                         {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('locations.destroy', $location->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}

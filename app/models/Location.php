@@ -11,7 +11,7 @@ class Location extends Eloquent {
 
 	public function city() {
 
-        return $this->hasOne('City', 'city_id');
+        return $this->belongsTo('City');
 	}
 
 }

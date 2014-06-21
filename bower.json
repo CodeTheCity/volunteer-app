@@ -1,0 +1,26 @@
+{
+  "name": "Laravel Boilerplate",
+  "version": "1.0.0",
+  "main": "public/assets/css/global.css",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/assets/js/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1",
+    "parsleyjs": "~1.2.4",    
+    "modernizr": "~2.7.1",
+    "selectivizr": "~1.0.2",
+  },
+  "license": "MIT",
+  "private": true,
+  "resolutions": {
+    "jquery": "1.9.1"
+  }
+}

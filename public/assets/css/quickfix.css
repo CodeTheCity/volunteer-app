@@ -1,0 +1,6 @@
+/* This is a quickfix file for css to bypass the requirement for Sass */
+/* Add your styles here using styles with high specificity to avoid any issues */
+/* Make sure a call to the file is present in the HEAD to include your new styles */
+/* Make sure you comment the styles clearly as someone will have to come back and tidy this up at a later date - make it easy for them please. */
+/* If you tidy up this file and there are no styles remaining, remeber to remove the call in the HEAD */
+

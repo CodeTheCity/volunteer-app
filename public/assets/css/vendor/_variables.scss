@@ -1,0 +1,41 @@
+// Set your global variables below
+// i.e. $foo: #000;
+
+////////////////////////////////////////////
+/////////// Main colour palette ////////////
+////////////////////////////////////////////
+
+$black: #000;
+
+$color-p: #ce0005; // Primary | PMS206c | CMYK: 0.100.50.0 | RGB: 206.0.55
+$color-s: #7c878e; // Secondary | PMS430c | CMYK: 33.18.13.40 | RGB: 124.135.142
+
+$color-t1: #470a68; // Tint 1 | PMS2617c | CMYK: 84.99.0.12 | RGB: 71.10.104
+$color-t2: #80276c; // Tint 2 | PMS249c | CMYK: 42.95.10.31 | RGB: 128.39.108
+$color-t3: #dd9cdf; // Tint 3 | PMS251c | CMYK: 17.43.0.0 | RGB: 221.156.223
+$color-t4: #d6d2c4; // Tint 4 | PMS7527c | CMYK: 3.4.14.8 | RGB: 214.210.196
+$color-t5: #c1c6c8; // Tint 5 | PMS428c | CMYK: 10.4.4.14 | RGB: 193.198.200
+$color-t6: #333f48; // Tint 6 | PMS432c | CMYK: 65.43.26.78 | RGB: 51.63.72
+
+// $color-h1: #; // Highlight 1
+// $color-h2: #; // Highlight 2
+
+////////////////// Greys ///////////////////
+
+$warm-grey: #f9f8f6;
+
+$grey-t1: scale-color($black, $lightness: 90%);
+$grey-t2: scale-color($black, $lightness: 80%);
+$grey-t3: scale-color($black, $lightness: 70%);
+$grey-t4: scale-color($black, $lightness: 60%);
+$grey-t5: scale-color($black, $lightness: 50%);
+$grey-t6: scale-color($black, $lightness: 40%);
+$grey-t7: scale-color($black, $lightness: 30%);
+$grey-t8: scale-color($black, $lightness: 20%);
+$grey-t9: scale-color($black, $lightness: 10%);
+
+////////////////////////////////////////////
+////////////////// Fonts ///////////////////
+////////////////////////////////////////////
+
+//$font-light: "azo-sans-web-n3","azo-sans-web",sans-serif;

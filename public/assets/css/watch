@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# This is a handy wrapper for running our Sass compilation command. From the
+# command line, simply `cd` to the root directory and run `$ web/assets/css/./watch`.
+# Change 'compressed' to 'expanded' to output a minified CSS file
+
+# No minification
+sass --watch web/assets/css/global.scss:web/assets/css/global.css --style compressed
+
+exit 0

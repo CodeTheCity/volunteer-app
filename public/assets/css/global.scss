@@ -1,0 +1,28 @@
+// Basics
+// =====
+// 
+//   1. Nesting: .parent { color: black; .child { colour: white; } }
+//   2. Namespace nesting: .class { color: black; font: { size: 1em; weight: bold} }
+//   3. Parent referencing: a { color: black; &hover { color: white; } }
+//   4. Comments: /*single line passed through*/ , /*! Multiline passed through even in compressed */ , // comments for scss file only
+//   5. Variables: $foo: #000; .class { color: $foo }
+//   6. Extend: .class1 { color: black; } .class2 { @extend .class1; background: white; }
+//   7. Placeholders with Extend: %button { color: black; background: white; } .read-more { @extend %button; }
+// Mixins
+// =====
+// 
+//   1. Basics: @mixin foo { color: black }  .class { @include foo;}
+//   2. Arguments: @mixin foo($color, $background) { color: $color; background: $background }  .class { @include foo(#000, #fff);}
+//   3. Defaults with arguments: @mixin foo($color white, $background: black) { color: $color; background: $background }  .class { @include foo($background: red);}
+// 
+
+///////////////////
+
+// Imports for other scss files. Bootsrap will require the developer to manually set the breakpoints used in the site in order for the grid system to operate correctly.
+
+
+@import "layout/bootstrap",
+		"vendor/all",
+        "layout/all";
+
+

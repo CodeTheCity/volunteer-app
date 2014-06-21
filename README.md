@@ -1,6 +1,6 @@
-# Laravel 4 starter app
+# Volunteer App
 
-[![Build Status](https://travis-ci.org/innesm4/laravel-boilerplate.svg)](https://travis-ci.org/innesm4/laravel-boilerplate)
+[![Build Status](https://travis-ci.org/innesm4/volunteer-app.svg)](https://travis-ci.org/innesm4/volunteer-app)
 
 Using Laravel 4 and Sentry 2
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Skill</h1>
+<h1>{{{ $skill->skill_name }}}</h1>
 
 <p>{{ link_to_route('skills.index', 'Return to All skills', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
 

@@ -80,3 +80,6 @@ Route::group(array('prefix' => 'v1', 'before' => 'api.auth|api.limit'), function
 });
 
 
+
+
+Route::resource('profiles', 'ProfilesController');

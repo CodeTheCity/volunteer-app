@@ -7,13 +7,17 @@ class Skill extends Eloquent {
 		'skill_name' => 'required'
 	);
 
-	public function users() {
+	public function profile() {
 
-        return $this->belongsToMany('User', 'skill_user')->withPivot('id');
 	}
 
 	public function opportunities() {
 
-        return $this->belongsToMany('Opportunity', 'oppurtunity_skill')->withPivot('id');
+        return $this->belongsToMany('Opportunity');
+	}
+
+	public function users() {
+
+        return $this->belongsToMany('User');
 	}
 }

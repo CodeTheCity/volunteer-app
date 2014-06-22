@@ -13,6 +13,7 @@
 		<meta name="MobileOptimized" content="320"/>
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<link href="{{ asset('assets/css/global.css') }}" rel="stylesheet">
+		<link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet">
 		
 	</head>
 	<body>	

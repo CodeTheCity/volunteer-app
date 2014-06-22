@@ -44,24 +44,53 @@ Profile</h4>
                 {{ ($errors->has('city') ?  $errors->first('city') : '') }}
             </div>
         </div>
+        <h4>My Skills I am willing to Volunteer:</h4>
+        <div class="form-group">
+            <div class="controls col-sm-2">   
+                @foreach($skills as $skill)
+                    @if(isset($assigned))
+                     <label class="checkbox">
+                        {{ Form::checkbox(
+                            'skills[]', 
+                            $skill->id, 
+                            in_array($skill->id, $assigned)) 
+                        }}{{ $skill->skill_name }}</label>
+                    @else
+                     <label class="checkbox">
+                        {{ Form::checkbox(
+                            'skills[]', 
+                            $skill->id) 
+                        }}{{ $skill->skill_name }}</label>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+        <h4>The Locations I am willing to Volunteer in:</h4>
+        <div class="form-group">
+            <div class="controls col-sm-2">   
+                @foreach($locations as $location)
+                    @if(isset($location_assigned))
+                     <label class="checkbox">
+                        {{ Form::checkbox(
+                            'locations[]', 
+                            $location->id, 
+                            in_array($location->id, $location_assigned)) 
+                        }}{{ $location->location_name }}</label>
+                    @else
+                     <label class="checkbox">
+                        {{ Form::checkbox(
+                            'locations[]', 
+                            $location->id) 
+                        }}{{ $location->location_name }}</label>
+                    @endif
+                @endforeach
+            </div>
+        </div>
 
     	<div class="form-actions">
 	    	<input class="btn-primary btn" type="submit" value="Submit Changes"> 
-	    	<input class="btn-inverse btn" type="reset" value="Reset">
 	    </div>
     </form>
-</div>
-
-<h4>My Skills</h4>
-<div class="well">
-
-
-    <form class="form-horizontal" action="{{ URL::to('users/skills') }}/{{ $user->id }}" method="post">
-        {{ Form::token() }}
- <div class="form-actions">
-            <input class="btn-primary btn" type="submit" value="Add Skills"> 
-        </div>
-      </form>
 </div>
 
 
@@ -96,7 +125,6 @@ Profile</h4>
 	        	
 	    <div class="form-actions">
 	    	<input class="btn-primary btn" type="submit" value="Change Password"> 
-	    	<input class="btn-inverse btn" type="reset" value="Reset">
 	    </div>
       </form>
   </div>

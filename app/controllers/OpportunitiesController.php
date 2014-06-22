@@ -12,6 +12,10 @@ class OpportunitiesController extends BaseController {
 	public function __construct(Opportunity $opportunity)
 	{
 		$this->opportunity = $opportunity;
+
+		$user = Sentry::getUser();
+
+		View::share('user', $user);
 	}
 
 	/**
@@ -33,7 +37,11 @@ class OpportunitiesController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('opportunities.create');
+		$locations = Location::lists('location_name', 'id');
+
+		$skills = Skill::all();
+
+		return View::make('opportunities.create', compact('locations', 'skills'));
 	}
 
 	/**
@@ -44,11 +52,27 @@ class OpportunitiesController extends BaseController {
 	public function store()
 	{
 		$input = Input::all();
+
+		$input = [
+			'opportunity_title' => Input::get('opportunity_title'),
+			'opportunity_detail' => Input::get('opportunity_detail'),
+			'opportunity_travel_information' => Input::get('opportunity_travel_information'),
+			'opportunity_date' => Input::get('opportunity_date'),
+			'location_id' => Input::get('location_id'),
+			'user_id' => Input::get('user_id')
+			];
+
+		$opp_skills = Input::get('skills');
+
 		$validation = Validator::make($input, Opportunity::$rules);
 
 		if ($validation->passes())
 		{
-			$this->opportunity->create($input);
+			$opportunity_object = $this->opportunity->create($input);
+			if(is_array($opp_skills))
+			{
+			Opportunity::find($opportunity_object->id)->skills()->attach($opp_skills);
+			}	
 
 			return Redirect::route('opportunities.index');
 		}
@@ -69,7 +93,11 @@ class OpportunitiesController extends BaseController {
 	{
 		$opportunity = $this->opportunity->findOrFail($id);
 
-		return View::make('opportunities.show', compact('opportunity'));
+		$group = Opportunity::find($opportunity->id);
+		$skills = Skill::all();
+		$assigned = $group->skills->lists('id');
+
+		return View::make('opportunities.show', compact('opportunity','group', 'skills', 'assigned'));
 	}
 
 	/**
@@ -80,14 +108,20 @@ class OpportunitiesController extends BaseController {
 	 */
 	public function edit($id)
 	{
+
 		$opportunity = $this->opportunity->find($id);
+		$locations = Location::lists('location_name', 'id');
+
+		$group = Opportunity::find($id);
+		$skills = Skill::all();
+		$assigned = $group->skills->lists('id');
 
 		if (is_null($opportunity))
 		{
 			return Redirect::route('opportunities.index');
 		}
 
-		return View::make('opportunities.edit', compact('opportunity'));
+		return View::make('opportunities.edit', compact('opportunity', 'locations', 'group', 'skills', 'assigned'));
 	}
 
 	/**
@@ -98,13 +132,28 @@ class OpportunitiesController extends BaseController {
 	 */
 	public function update($id)
 	{
-		$input = array_except(Input::all(), '_method');
+		$input = [
+			'opportunity_title' => Input::get('opportunity_title'),
+			'opportunity_detail' => Input::get('opportunity_detail'),
+			'opportunity_travel_information' => Input::get('opportunity_travel_information'),
+			'opportunity_date' => Input::get('opportunity_date'),
+			'location_id' => Input::get('location_id'),
+			'user_id' => Input::get('user_id')
+		];
+
+		$opp_skills = Input::get('skills');
+
 		$validation = Validator::make($input, Opportunity::$rules);
 
 		if ($validation->passes())
 		{
-			$opportunity = $this->opportunity->find($id);
-			$opportunity->update($input);
+			$opportunity_object = $this->opportunity->find($id);
+			$opportunity_object->update($input);
+			if(is_array($opp_skills))
+			{
+			Opportunity::find($opportunity_object->id)->skills()->sync($opp_skills);
+			}	
+
 
 			return Redirect::route('opportunities.show', $id);
 		}

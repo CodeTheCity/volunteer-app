@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
-        <h1>Create Opportunity</h1>
+        <h1>Create Volunteering Opportunity</h1>
 
         @if ($errors->any())
         	<div class="alert alert-danger">
@@ -19,47 +19,55 @@
 {{ Form::open(array('route' => 'opportunities.store', 'class' => 'form-horizontal')) }}
 
         <div class="form-group">
-            {{ Form::label('opportunity_title', 'Opportunity_title:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('opportunity_title', 'Title:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('opportunity_title', Input::old('opportunity_title'), array('class'=>'form-control', 'placeholder'=>'Opportunity_title')) }}
+              {{ Form::text('opportunity_title', Input::old('opportunity_title'), array('class'=>'form-control', 'placeholder'=>'Title')) }}
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('opportunity_detail', 'Opportunity_detail:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('opportunity_detail', 'Details:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::textarea('opportunity_detail', Input::old('opportunity_detail'), array('class'=>'form-control', 'placeholder'=>'Opportunity_detail')) }}
+              {{ Form::textarea('opportunity_detail', Input::old('opportunity_detail'), array('class'=>'form-control', 'placeholder'=>'Details')) }}
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('opportunity_travel_information', 'Opportunity_travel_information:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('opportunity_travel_information', 'Travel Information:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::textarea('opportunity_travel_information', Input::old('opportunity_travel_information'), array('class'=>'form-control', 'placeholder'=>'Opportunity_travel_information')) }}
+              {{ Form::textarea('opportunity_travel_information', Input::old('opportunity_travel_information'), array('class'=>'form-control', 'placeholder'=>'Travel Information')) }}
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('opportunity_date', 'Opportunity_date:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('opportunity_date', 'Date:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('opportunity_date', Input::old('opportunity_date'), array('class'=>'form-control', 'placeholder'=>'Opportunity_date')) }}
+            {{ Form::text('opportunity_date', Input::old('opportunity_date'), array('class'=>'date-picker form-control', 'placeholder'=>'Date')) }}
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('location_id', 'Location_id:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('location_id', 'Location:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('location_id', Input::old('location_id'), array('class'=>'form-control', 'placeholder'=>'Location_id')) }}
+                 {{ Form::select('location_id', $locations, Input::old('location_id'), array('class'=>'form-control')) }}
             </div>
         </div>
-
         <div class="form-group">
-            {{ Form::label('user_id', 'User_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::input('number', 'user_id', Input::old('user_id'), array('class'=>'form-control')) }}
-            </div>
+            {{ Form::label('opp_skills', 'Skills Required:', array('class'=>'col-md-2 control-label')) }}
+             <div class="controls col-sm-2">
+
+   
+            @foreach($skills as $skill)
+            <label class="checkbox">
+                {{ Form::checkbox('skills[]', $skill->id, false) }}             
+                {{ $skill->skill_name }}
+            </label>
+            @endforeach
+             </div>
         </div>
 
+        {{ Form::hidden('user_id', $user->id) }}
+   
 
 
 <div class="form-group">

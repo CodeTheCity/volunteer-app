@@ -99,11 +99,12 @@ class UserController extends BaseController {
 		   	//Do they have admin access?
 			if ( $currentUser->hasAccess('admin') || $currentUser->getId() == $id)
 			{
-				//Either they are an admin, or:
-				//They are not an admin, but they are viewing their own profile.
+				$group = User::find($id);
+				$skills = Skill::all();
+				$assigned = $group->skills->lists('id');
 				$data['user'] = Sentry::getUserProvider()->findById($id);
 				$data['myGroups'] = $data['user']->getGroups();
-				return View::make('users.show')->with($data);
+				return View::make('users.show')->with($data)->with('group', $group)->with('skills', $skills)->with('assigned', $assigned);
 			} else {
 				Session::flash('error', 'You don\'t have access to that user.');
 				return Redirect::to('/');
@@ -466,23 +467,33 @@ class UserController extends BaseController {
 			$currentUser = Sentry::getUser();
 
 		   	//Do they have admin access?
-			if ( $currentUser->hasAccess('admin'))
+			if ($currentUser->hasAccess('admin'))
 			{	
-				$skills = Skill::orderBy('skill_name')->lists('skill_name', 'skill_name');
+				$group = User::find($id);
+				$skills = Skill::all();
+				$assigned = $group->skills->lists('id');
+
+				$user_object = User::find($id);
+				$locations = Location::all();
+				$location_assigned = $group->locations->lists('id');
+
 				$cities = City::orderBy('city_name')->lists('city_name', 'city_name');
+
 				$data['user'] = Sentry::getUserProvider()->findById($id);
 				$data['userGroups'] = $data['user']->getGroups();
 				$data['allGroups'] = Sentry::getGroupProvider()->findAll();
-				return View::make('users.edit')->with($data)->with('cities', $cities)->with('skills', $skills);
+				return View::make('users.edit')->with($data)->with('cities', $cities)->with('skills', $skills)->with('assigned', $assigned)->with('locations', $locations)->with('location_assigned', $location_assigned);
 			} 
 			elseif ($currentUser->getId() == $id)
 			{
-				$skills = Skill::orderBy('skill_name')->lists('skill_name', 'skill_name');
-				//They are not an admin, but they are viewing their own profile.
+				$group = User::find($id);
+				$skills = Skill::all();
+				$assigned = $group->skills->lists('id');
+
 				$cities = City::orderBy('city_name')->lists('city_name', 'city_name');
 				$data['user'] = Sentry::getUserProvider()->findById($id);
 				$data['userGroups'] = $data['user']->getGroups();
-				return View::make('users.edit')->with($data)->with('cities', $cities)->with('skills', $skills);
+				return View::make('users.edit')->with($data)->with('cities', $cities)->with('skills', $skills)->with('group', $group)->with('assigned', $assigned);
 			} else {
 				Session::flash('error', 'You don\'t have access to that user.');
 				return Redirect::to('/');
@@ -502,10 +513,11 @@ class UserController extends BaseController {
 		$input = array(
 			'firstName' => Input::get('firstName'),
 			'lastName' => Input::get('lastName'),
-			'city' => Input::get('city'),
+			'city' => Input::get('city')
+		);
 
-			);
-
+		$user_skills = Input::get('skills');
+		$user_locations = Input::get('locations');
 		// Set Validation Rules
 		$rules = array (
 			'firstName' => 'alpha',
@@ -528,6 +540,15 @@ class UserController extends BaseController {
 				Sentry::check();
 				$currentUser = Sentry::getUser();
 
+				if(is_array($user_skills))
+				{
+				User::find($currentUser->id)->skills()->sync($user_skills);
+				}
+				if(is_array($user_locations))
+				{
+				User::find($currentUser->id)->locations()->sync($user_locations);
+				}		
+
 			   	//Do they have admin access?
 				if ( $currentUser->hasAccess('admin')  || $currentUser->getId() == $id)
 				{
@@ -543,14 +564,14 @@ class UserController extends BaseController {
 				    // Update the user
 				    if ($user->save())
 				    {
+				    	
+
 				        // User information was updated
 				        Session::flash('success', 'Profile updated.');
 						return Redirect::to('users/show/'. $id);
 				    }
 				    else
 				    {
-				        // User information was not updated
-				        Session::flash('error', 'Profile could not be updated.');
 						return Redirect::to('users/edit/' . $id);
 				    }
 

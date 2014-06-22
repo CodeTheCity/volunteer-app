@@ -35,6 +35,23 @@ Show user
 		</div>
 	</div>
 
+	<h4>My Skills:</h4>
+	<div class="well">
+	    @foreach($skills as $skill)
+		    @if(isset($assigned))
+			<p>{{ $skill->skill_name }}</p>
+		    @else
+		    <p>You haven't entered any skills in yet</p>
+		    @endif
+		@endforeach
+	</div>
+
+	<h4>Locations I am available for:</h4>
+	<div class="well">
+	   
+	</div>
+
+
 	<h4>Group Memberships:</h4>
 	<div class="well">
 	    <ul>

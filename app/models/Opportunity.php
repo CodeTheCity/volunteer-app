@@ -14,6 +14,12 @@ class Opportunity extends Eloquent {
 
 	public function location() {
 
-        return $this->hasOne('location', 'location_id');
+        return $this->belongsTo('Location');
 	}
+
+	public function skills() {
+
+        return $this->belongsToMany('Skill');
+	}
+
 }

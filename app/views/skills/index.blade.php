@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>All Skills</h1>
+<h1>Available Skills</h1>
 
 <p>{{ link_to_route('skills.create', 'Add New Skill', null, array('class' => 'btn btn-lg btn-success')) }}</p>
 

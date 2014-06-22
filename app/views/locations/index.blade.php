@@ -17,7 +17,7 @@
 		<tbody>
 			@foreach ($locations as $location)
 				<tr>
-					<td><a href="/locations/{{{ $location->id }}}">{{{ $location->location_name }}}</a></td>
+					<td><a href="/opportunities/{{{ $location->id }}}">{{{ $location->location_name }}}</a></td>
                     <td>
                         {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('locations.destroy', $location->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}

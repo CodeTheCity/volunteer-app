@@ -22,4 +22,9 @@ class Opportunity extends Eloquent {
         return $this->belongsToMany('Skill');
 	}
 
+	public function users() {
+
+        return $this->belongsToMany('User');
+	}
+
 }

@@ -28,6 +28,9 @@
 		
             <td>
             	@if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
+            	{{ Form::model($guest->pivot, ['class' => 'oppurtunity-apply-form', 'method' => 'POST', 'route' => ['guestlists.apply', $guest->pivot->id]]) }}
+						{{ Form::checkbox('apply') }}
+				{{ Form::close() }}
 			    @else
 			     {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('opportunities.destroy', $opportunity->id))) }}
                     {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}

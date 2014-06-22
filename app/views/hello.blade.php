@@ -90,6 +90,25 @@ Volunteer
                     @endforeach
               </tbody>
             </table>
+            <h3>Latest Community Events</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($events as $event)
+                        <tr>
+                            <td>{{{ $event->community_event_title }}}</td>
+                            <td>{{{ $event->community_event_date }}}</td>
+                            <td>{{{ $event->location->location_name }}}</td>
+                        </tr>
+                    @endforeach
+              </tbody>
+            </table>
 
            
 

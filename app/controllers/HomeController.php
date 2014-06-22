@@ -34,15 +34,15 @@ class HomeController extends BaseController {
 		$skillmatches = Skill::with('opportunities')->with('users')->has('opportunities')->has('users')->get();	
 		//if the oppurtunity and location match send email and display in Matches on feed
 
+		$events = Community_event::all();
 		//array to store docs without tags
-	
 		$usermatches = User::with('locations')->has('locations')->get();
 
 		$opportunitymatches = Opportunity::with('location')->with('skills')->get();		
 
 		//return $skillmatches;
 
-		return View::make('hello', compact('skillmatches', 'opportunitymatches', 'skills', 'assigned', 'locations', 'location_assigned'));
+		return View::make('hello', compact('skillmatches', 'opportunitymatches', 'skills', 'assigned', 'locations', 'location_assigned','events'));
 
 		}
 		else {

@@ -15,7 +15,6 @@ var LaravelBoilerplate = {
 
                 $('#contact-form').parsley();
 
-
     
             });
         },

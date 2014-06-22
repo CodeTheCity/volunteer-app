@@ -16,12 +16,12 @@
 	<tbody>
 		<tr>
 			<td>{{{ $skill->skill_name }}}</td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('skills.destroy', $skill->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('skills.edit', 'Edit', array($skill->id), array('class' => 'btn btn-info')) }}
-                    </td>
+            <td>
+                {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('skills.destroy', $skill->id))) }}
+                    {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                {{ Form::close() }}
+                {{ link_to_route('skills.edit', 'Edit', array($skill->id), array('class' => 'btn btn-info')) }}
+            </td>
 		</tr>
 	</tbody>
 </table>

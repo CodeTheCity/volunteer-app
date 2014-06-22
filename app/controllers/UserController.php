@@ -102,9 +102,12 @@ class UserController extends BaseController {
 				$group = User::find($id);
 				$skills = Skill::all();
 				$assigned = $group->skills->lists('id');
+				$user_object = User::find($id);
+				$locations = Location::all();
+				$location_assigned = $group->locations->lists('id');
 				$data['user'] = Sentry::getUserProvider()->findById($id);
 				$data['myGroups'] = $data['user']->getGroups();
-				return View::make('users.show')->with($data)->with('group', $group)->with('skills', $skills)->with('assigned', $assigned);
+				return View::make('users.show')->with($data)->with('group', $group)->with('skills', $skills)->with('assigned', $assigned)->with('locations', $locations)->with('location_assigned', $location_assigned);
 			} else {
 				Session::flash('error', 'You don\'t have access to that user.');
 				return Redirect::to('/');
@@ -490,10 +493,14 @@ class UserController extends BaseController {
 				$skills = Skill::all();
 				$assigned = $group->skills->lists('id');
 
+				$user_object = User::find($id);
+				$locations = Location::all();
+				$location_assigned = $group->locations->lists('id');
+
 				$cities = City::orderBy('city_name')->lists('city_name', 'city_name');
 				$data['user'] = Sentry::getUserProvider()->findById($id);
 				$data['userGroups'] = $data['user']->getGroups();
-				return View::make('users.edit')->with($data)->with('cities', $cities)->with('skills', $skills)->with('group', $group)->with('assigned', $assigned);
+				return View::make('users.edit')->with($data)->with('cities', $cities)->with('skills', $skills)->with('group', $group)->with('assigned', $assigned)->with('locations', $locations)->with('location_assigned', $location_assigned);
 			} else {
 				Session::flash('error', 'You don\'t have access to that user.');
 				return Redirect::to('/');

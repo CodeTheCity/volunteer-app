@@ -38,17 +38,41 @@ Show user
 	<h4>My Skills:</h4>
 	<div class="well">
 	    @foreach($skills as $skill)
-		    @if(isset($assigned))
-			<p>{{ $skill->skill_name }}</p>
-		    @else
-		    <p>You haven't entered any skills in yet</p>
-		    @endif
-		@endforeach
+            @if(isset($assigned))
+             <label class="checkbox">
+                {{ Form::checkbox(
+                    'skills[]', 
+                    $skill->id, 
+                    in_array($skill->id, $assigned), ['disabled' => 'disabled']) 
+                }}{{ $skill->skill_name }}</label>
+            @else
+             <label class="checkbox">
+                {{ Form::checkbox(
+                    'skills[]', 
+                    $skill->id, ['disabled' => 'disabled']) 
+                }}{{ $skill->skill_name }}</label>
+            @endif
+        @endforeach
 	</div>
 
 	<h4>Locations I am available for:</h4>
 	<div class="well">
-	   
+	    @foreach($locations as $location)
+                    @if(isset($location_assigned))
+                     <label class="checkbox">
+                        {{ Form::checkbox(
+                            'locations[]', 
+                            $location->id, 
+                            in_array($location->id, $location_assigned), ['disabled' => 'disabled']) 
+                        }}{{ $location->location_name }}</label>
+                    @else
+                     <label class="checkbox">
+                        {{ Form::checkbox(
+                            'locations[]', 
+                            $location->id, ['disabled' => 'disabled']) 
+                        }}{{ $location->location_name }}</label>
+                    @endif
+                @endforeach
 	</div>
 
 

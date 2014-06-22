@@ -18,7 +18,19 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		if (Sentry::check()){
+
+
 		$user = Sentry::getUser();
+
+		$group = User::find($user->id);
+		$skills = Skill::all();
+		$assigned = $group->skills->lists('id');
+
+		$user_object = User::find($user->id);
+		$locations = Location::all();
+		$location_assigned = $group->locations->lists('id');
+
+	
 
 		//for an oppurtunity if and skills match then check against location
 		$skillmatches = Skill::with('opportunities')->with('users')->has('opportunities')->has('users')->get();	
@@ -32,7 +44,7 @@ class HomeController extends BaseController {
 
 		//return $skillmatches;
 
-		return View::make('hello', compact('skillmatches', 'opportunitymatches'));
+		return View::make('hello', compact('skillmatches', 'opportunitymatches', 'skills', 'assigned', 'locations', 'location_assigned'));
 
 		}
 		else {

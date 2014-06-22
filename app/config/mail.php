@@ -92,6 +92,6 @@ return array(
 	|
 	*/
 
-	'password' => 'mark3792',
+	'password' => 'test',
 
 );

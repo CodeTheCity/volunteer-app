@@ -2,6 +2,8 @@
 
 @section('content')
 
+@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
+
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
         <h1>Create Volunteering Opportunity</h1>
@@ -78,7 +80,7 @@
 </div>
 
 {{ Form::close() }}
-
+ @endif
 @stop
 
 

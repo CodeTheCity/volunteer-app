@@ -113,3 +113,6 @@ Route::group(array('prefix' => 'v1'), function()
 	});
 
 });
+
+
+Route::resource('community_events', 'Community_eventsController');

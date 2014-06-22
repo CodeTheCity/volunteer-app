@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 
 <h1>All Opportunities</h1>
 
@@ -41,5 +42,5 @@
 @else
 	There are no opportunities
 @endif
-
+@endif
 @stop

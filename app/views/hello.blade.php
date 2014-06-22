@@ -60,44 +60,37 @@ Volunteer
         </div>
         <div class="col-lg-6">
             <h3>Volunteer Matches</h3>
-            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Location</th>
+                        <th>Start Date</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($skillmatches as $skillmatch)
 
-            
-               @foreach ($skillmatches as $skillmatch)
+                        @foreach ($skillmatch->users as $user)
 
-               @foreach ($skillmatch->users as $user)
+                            @if ($user->id  == Sentry::getUser()->id)
+                                @foreach ($skillmatch->opportunities as $opportunity)
+                                    <tr>
+                                        <td><a href="/opportunities/{{{ $opportunity->id }}}">{{{ $opportunity->opportunity_title }}}</a></td>
+                                        <td>{{{ $opportunity->location->location_name }}}</td>
+                                        <td>{{{ $opportunity->opportunity_date}}}</td>
+                                        <td><a href="/opportunities/{{{ $opportunity->id }}}" class="btn btn-sm btn-default">Apply</a></td>
+                                    </tr>
+                                @endforeach
+                            @endif      
 
-               @if ($user->id  == Sentry::getUser()->id)
-                    @foreach ($skillmatch->opportunities as $opportunity)
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Location</th>
-                                <th>Start Date</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><a href="/opportunities/{{{ $opportunity->id }}}">{{{ $opportunity->opportunity_title }}}</a></td>
-                                <td>{{{ $opportunity->location->location_name }}}</td>
-                                <td>{{{ $opportunity->opportunity_date}}}</td>
-                                <td><a href="/opportunities/{{{ $opportunity->id }}}" class="btn btn-sm btn-default">Apply</a></td>
-                            </tr>
-                        </tbody>
-                     </table>
+                        @endforeach
+
                     @endforeach
-                @else
-                <p>No Matches</p>    
-                @endif      
+              </tbody>
+            </table>
 
-               @endforeach
-
-
-                   
-                @endforeach
-                
            
 
 

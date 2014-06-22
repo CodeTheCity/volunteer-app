@@ -3,9 +3,9 @@
 @section('content')
 
 <h1>{{{ $opportunity->opportunity_title }}}</h1>
-
+@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 <p>{{ link_to_route('opportunities.index', 'Return to All opportunities', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
-
+@endif
 <table class="table table-striped">
 	<thead>
 		<tr>

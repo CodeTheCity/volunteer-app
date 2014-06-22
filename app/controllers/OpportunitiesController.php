@@ -177,4 +177,27 @@ class OpportunitiesController extends BaseController {
 		return Redirect::route('opportunities.index');
 	}
 
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function apply($id)
+	{
+		$email_id = Input::get('user_id');
+
+		$send_email = User::find($email_id)->first();
+
+		$data['email'] = $send_email->email;
+
+		Mail::send('emails.apply', $data, function($m) use($data)
+		{
+		    $m->to($data['email'])->subject('Confirmation of Volunteer Application');
+		});
+
+		Session::flash('success', 'You have applied. Check your emails');
+		return Redirect::route('opportunities.show', $id);
+	}
+
 }

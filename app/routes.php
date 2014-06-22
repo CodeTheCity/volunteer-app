@@ -67,7 +67,8 @@ Route::get('/random', function()
 
 Route::resource('skills', 'SkillsController');
 
-Route::post('/user/{id}/add', array('as' => 'skills.add', 'uses' => 'SkillsController@useradd'));
+Route::post('/opportunities/{id}/apply', array('as' => 'opportunities.apply', 'uses' => 'OpportunitiesController@apply'));
+
 
 /*
 |-----------------------------------------------------------------------
@@ -84,6 +85,8 @@ Route::resource('locations', 'LocationsController');
 */
 
 Route::resource('opportunities', 'OpportunitiesController');
+Route::post('/user/{id}/add', array('as' => 'skills.add', 'uses' => 'SkillsController@useradd'));
+
 
 Route::group(array('prefix' => 'v1'), function()
 {

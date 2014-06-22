@@ -112,6 +112,7 @@ Volunteer
               </tbody>
             </table>
             @endif 
+            @if (Sentry::check())
             <h3>Latest Community Events</h3>
             <table class="table table-striped">
                 <thead>
@@ -131,6 +132,7 @@ Volunteer
                     @endforeach
               </tbody>
             </table>
+            @endif
 
            
 

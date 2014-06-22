@@ -12,6 +12,9 @@ class Community_eventsController extends BaseController {
 	public function __construct(Community_event $community_event)
 	{
 		$this->community_event = $community_event;
+		$user = Sentry::getUser();
+
+		View::share('user', $user);
 	}
 
 	/**
@@ -33,7 +36,8 @@ class Community_eventsController extends BaseController {
 	 */
 	public function create()
 	{
-		return View::make('community_events.create');
+		$locations = Location::lists('location_name', 'id');
+		return View::make('community_events.create', compact('locations'));
 	}
 
 	/**
@@ -82,12 +86,14 @@ class Community_eventsController extends BaseController {
 	{
 		$community_event = $this->community_event->find($id);
 
+		$locations = Location::lists('location_name', 'id');
+
 		if (is_null($community_event))
 		{
 			return Redirect::route('community_events.index');
 		}
 
-		return View::make('community_events.edit', compact('community_event'));
+		return View::make('community_events.edit', compact('community_event','locations'));
 	}
 
 	/**

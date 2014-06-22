@@ -7,10 +7,6 @@ class Skill extends Eloquent {
 		'skill_name' => 'required'
 	);
 
-	public function profile() {
-
-	}
-
 	public function opportunities() {
 
         return $this->belongsToMany('Opportunity');

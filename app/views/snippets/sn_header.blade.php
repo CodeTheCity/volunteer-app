@@ -8,10 +8,10 @@
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
-	    @if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
-	    <a href="{{ URL::to('/') }}" class="navbar-brand">Volunteer</a>
-	    @else
-	     <a href="{{ URL::to('/') }}" class="navbar-brand">Admin</a>
+	    @if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
+	    <a href="{{ URL::to('/') }}" class="navbar-brand">Admin</a>
+	    @else    
+	     <a href="{{ URL::to('/') }}" class="navbar-brand">Volunteer</a>
 	    @endif
 	  </div>
 	  <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,6 +27,7 @@
 				<li {{ (Request::is('skills*') ? 'class="active"' : '') }}><a href="{{ URL::to('/skills') }}">Skills</a></li>
 				<li {{ (Request::is('opportunities*') ? 'class="active"' : '') }}><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
 				<li {{ (Request::is('locations*') ? 'class="active"' : '') }}><a href="{{ URL::to('/locations') }}">Locations</a></li>
+				<li {{ (Request::is('community_events*') ? 'class="active"' : '') }}><a href="{{ URL::to('/community_events') }}">Events</a></li>
 			@endif 
 		</ul>
 		<ul class="nav pull-right navbar-nav">

@@ -1,21 +1,18 @@
-@extends('layouts.scaffold')
+@extends('layouts.default')
 
-@section('main')
+@section('content')
 
-<h1>Show Community_event</h1>
+<h1>Show Community Event</h1>
 
-<p>{{ link_to_route('community_events.index', 'Return to All community_events', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
+<p>{{ link_to_route('community_events.index', 'Return to All Community Events', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
 
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Community_event_title</th>
-				<th>Community_event_detail</th>
-				<th>Community_event_date</th>
-				<th>Location_id</th>
-				<th>User_id</th>
-				<th>
-User_id</th>
+			<th>Title</th>
+			<th>Details</th>
+			<th>Date</th>
+			<th>Location</th>
 		</tr>
 	</thead>
 
@@ -24,10 +21,7 @@ User_id</th>
 			<td>{{{ $community_event->community_event_title }}}</td>
 					<td>{{{ $community_event->community_event_detail }}}</td>
 					<td>{{{ $community_event->community_event_date }}}</td>
-					<td>{{{ $community_event->location_id }}}</td>
-					<td>{{{ $community_event->user_id }}}</td>
-					<td>{{{ $community_event->
-user_id }}}</td>
+					<td>{{{ $community_event->location->location_name }}}</td>
                     <td>
                         {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('community_events.destroy', $community_event->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}

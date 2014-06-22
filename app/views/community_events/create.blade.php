@@ -1,10 +1,10 @@
-@extends('layouts.scaffold')
+@extends('layouts.default')
 
-@section('main')
+@section('content')
 
 <div class="row">
     <div class="col-md-10 col-md-offset-2">
-        <h1>Create Community_event</h1>
+        <h1>Create Community Event</h1>
 
         @if ($errors->any())
         	<div class="alert alert-danger">
@@ -19,51 +19,35 @@
 {{ Form::open(array('route' => 'community_events.store', 'class' => 'form-horizontal')) }}
 
         <div class="form-group">
-            {{ Form::label('community_event_title', 'Community_event_title:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('community_event_title', 'Title:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('community_event_title', Input::old('community_event_title'), array('class'=>'form-control', 'placeholder'=>'Community_event_title')) }}
+              {{ Form::text('community_event_title', Input::old('community_event_title'), array('class'=>'form-control', 'placeholder'=>'Title')) }}
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('community_event_detail', 'Community_event_detail:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('community_event_detail', 'Details:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::textarea('community_event_detail', Input::old('community_event_detail'), array('class'=>'form-control', 'placeholder'=>'Community_event_detail')) }}
+              {{ Form::textarea('community_event_detail', Input::old('community_event_detail'), array('class'=>'form-control', 'placeholder'=>'Details')) }}
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('community_event_date', 'Community_event_date:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('community_event_date', 'Date:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('community_event_date', Input::old('community_event_date'), array('class'=>'form-control', 'placeholder'=>'Community_event_date')) }}
+                {{ Form::text('community_event_date', Input::old('community_event_date'), array('class'=>'date-picker form-control', 'placeholder'=>'Date')) }}
+              
             </div>
         </div>
 
         <div class="form-group">
-            {{ Form::label('location_id', 'Location_id:', array('class'=>'col-md-2 control-label')) }}
+            {{ Form::label('location_id', 'Location:', array('class'=>'col-md-2 control-label')) }}
             <div class="col-sm-10">
-              {{ Form::text('location_id', Input::old('location_id'), array('class'=>'form-control', 'placeholder'=>'Location_id')) }}
+              {{ Form::select('location_id', $locations, Input::old('location_id'), array('class'=>'form-control')) }}
             </div>
         </div>
-
-        <div class="form-group">
-            {{ Form::label('user_id', 'User_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::input('number', 'user_id', Input::old('user_id'), array('class'=>'form-control')) }}
-            </div>
-        </div>
-
-        <div class="form-group">
-            {{ Form::label('
-user_id', '
-User_id:', array('class'=>'col-md-2 control-label')) }}
-            <div class="col-sm-10">
-              {{ Form::text('
-user_id', Input::old('
-user_id'), array('class'=>'form-control', 'placeholder'=>'
-User_id')) }}
-            </div>
-        </div>
+    
+    {{ Form::hidden('user_id', $user->id) }}
 
 
 <div class="form-group">

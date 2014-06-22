@@ -27,10 +27,14 @@
 			<td>{{{ $opportunity->location->location_name }}}</td>
 		
             <td>
-                {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('opportunities.destroy', $opportunity->id))) }}
+            	@if (Sentry::check() && Sentry::getUser()->hasAccess('users'))
+			    @else
+			     {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('opportunities.destroy', $opportunity->id))) }}
                     {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                 {{ Form::close() }}
                 {{ link_to_route('opportunities.edit', 'Edit', array($opportunity->id), array('class' => 'btn btn-info')) }}
+			    @endif
+                
             </td>
 		</tr>
 	</tbody>
@@ -43,7 +47,7 @@
     {{ Form::checkbox(
         'skills[]', 
         $skill->id, 
-        in_array($skill->id, $assigned)) 
+        in_array($skill->id, $assigned), ['disabled' => 'disabled']) 
     }}{{ $skill->skill_name }}</label>
 @else
  <label class="checkbox">
@@ -53,5 +57,7 @@
     }}{{ $skill->skill_name }}</label>
 @endif
 @endforeach
+
+
 
 @stop

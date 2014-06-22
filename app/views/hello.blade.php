@@ -66,6 +66,7 @@ Volunteer
                 <tr>
                     <th>Title</th>
                     <th>Location</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
 
@@ -75,6 +76,7 @@ Volunteer
                     <tr>
                         <td><a href="/opportunities/{{{ $opportunity->id }}}">{{{ $opportunity->opportunity_title }}}</a></td>
                         <td>{{{ $opportunity->location->location_name }}}</td>
+                        <td><a href="/opportunities/{{{ $opportunity->id }}}" class="btn btn-sm btn-default">Apply</a></td>
                     </tr>
                     @endforeach
                 @endforeach

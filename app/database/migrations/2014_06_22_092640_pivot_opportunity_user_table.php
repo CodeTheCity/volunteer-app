@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class PivotSkillUserTable extends Migration {
+class PivotOpportunityUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class PivotSkillUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('skill_user', function(Blueprint $table) {
+		Schema::create('opportunity_user', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('skill_id')->unsigned()->index();
+			$table->integer('opportunity_id')->unsigned()->index();
 			$table->integer('user_id')->unsigned()->index();
-			$table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
+			$table->foreign('opportunity_id')->references('id')->on('opportunities')->onDelete('cascade');
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
@@ -30,7 +30,7 @@ class PivotSkillUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('skill_user');
+		Schema::drop('opportunity_user');
 	}
 
 }

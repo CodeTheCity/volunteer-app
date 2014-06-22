@@ -1,6 +1,6 @@
 # Volunteer App
 
-[![Build Status](https://travis-ci.org/innesm4/volunteer-app.svg)](https://travis-ci.org/innesm4/volunteer-app)
+[![Build Status](https://travis-ci.org/CodeTheCity/volunteer-app.svg)](https://travis-ci.org/CodeTheCity/volunteer-app)
 
 ## Installation instructions
 

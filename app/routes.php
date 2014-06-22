@@ -112,6 +112,12 @@ Route::group(array('prefix' => 'v1'), function()
 		return Response::json($opportunitymatches->toArray(), 201);
 	});
 
+	Route::get('community-events', function()
+	{
+		$communityevents = Community_event::with('location')->get();	
+		return Response::json($communityevents->toArray(), 201);
+	});
+
 });
 
 

@@ -67,6 +67,13 @@ Volunteer
             <p><a href="/skills/create" class="btn btn-md btn-primary">Add Skill</a></p>
             <p><a href="/locations/create" class="btn btn-md btn-primary">Add Location</a></p>
             <p><a href="/community_events/create" class="btn btn-md btn-primary">Add Community Event</a></p>
+            <h3>JSON Endpoints</h3>
+            <hr>
+            <p><a href="/v1/community-events" class="btn btn-md btn-default">Community Events</a></p>
+            <p><a href="/v1/opportunity-matches" class="btn btn-md btn-default">Opportunity Matches</a></p>
+            <p><a href="/v1/skill-matches" class="btn btn-md btn-default">Skill Matches</a></p>
+            <p><a href="/v1/opportunities" class="btn btn-md btn-default">Opportunities</a></p>
+            <p><a href="/v1/skills" class="btn btn-md btn-default">Skills</a></p>
 
             @endif 
  

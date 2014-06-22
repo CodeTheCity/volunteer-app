@@ -59,27 +59,57 @@ Route::get('/random', function()
 	return $random;
 });
 
+/*
+|-----------------------------------------------------------------------
+| Skills
+|-----------------------------------------------------------------------
+*/
+
 Route::resource('skills', 'SkillsController');
 
 Route::post('/user/{id}/add', array('as' => 'skills.add', 'uses' => 'SkillsController@useradd'));
 
+/*
+|-----------------------------------------------------------------------
+| Locations
+|-----------------------------------------------------------------------
+*/
+
 Route::resource('locations', 'LocationsController');
+
+/*
+|-----------------------------------------------------------------------
+| Opportunities
+|-----------------------------------------------------------------------
+*/
 
 Route::resource('opportunities', 'OpportunitiesController');
 
-Route::group(array('prefix' => 'v1', 'before' => 'api.auth|api.limit'), function()
+Route::group(array('prefix' => 'v1'), function()
 {
 
-	Route::get('locations', function()
+	Route::get('skills', function()
 	{
-		$locations = Auth::user()->locations;
+		$skills = Skill::all();
+		return Response::json($skills->toArray(), 201);
+	});
 
-		return Response::json($locations->toArray());
+	Route::get('opportunities', function()
+	{
+		$opportunities = Opportunity::all();
+		return Response::json($opportunities->toArray(), 201);
+	});
+
+	Route::get('skill-matches', function()
+	{
+		$skillmatches = Skill::with('opportunities')->with('users')->has('opportunities')->has('users')->get();	
+		return Response::json($skillmatches->toArray(), 201);
+	});
+
+	Route::get('opportunity-matches', function()
+	{
+		$opportunitymatches = Opportunity::with('location')->with('skills')->get();	
+		return Response::json($opportunitymatches->toArray(), 201);
 	});
 
 });
-
-
-
-
-Route::resource('profiles', 'ProfilesController');

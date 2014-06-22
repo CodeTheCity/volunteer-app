@@ -150,7 +150,6 @@ class UserController extends BaseController {
 		// Set Validation Rules
 		$rules = array (
 			'email' => 'required|min:4|max:32|email|unique:users',
-			'mobilenumber' => 'size:11',
 			'city' => 'required',
 			'password' => 'required|min:6|confirmed',
 			'password_confirmation' => 'required'

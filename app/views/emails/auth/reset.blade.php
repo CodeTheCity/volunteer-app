@@ -9,6 +9,6 @@
 		<p>To reset your password, <a href="{{  URL::to('users/reset', array('id' => $userId, urlencode($resetCode))) }}">click here.</a></p>
 		<p>Or point your browser to this address: <br /> {{  URL::to('users/reset', array('id' => $userId, urlencode($resetCode))) }}</p>
 		<p>Thank you, <br/>
-			~StampOut team</p>
+			~Volunteer App team</p>
 	</body>
 </html>

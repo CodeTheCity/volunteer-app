@@ -26,13 +26,7 @@ Register
                                 {{ ($errors->has('email') ? $errors->first('email') : '') }}
                             </div>
                         </div> 
-                        <div class="control-group {{ $errors->has('mobilenumber') ? 'error' : '' }}" for="mobilenumber">
-                            <label class="control-label" for="password">Mobile Number</label>
-                            <div class="controls form-group">
-                                <input name="mobilenumber" value="" type="text" class="form-control" placeholder="Mobile Number">
-                                {{ ($errors->has('mobilenumber') ?  $errors->first('mobilenumber') : '') }}
-                            </div>
-                        </div>
+            
                         <div class="control-group {{ $errors->has('city') ? 'error' : '' }}" for="city">
                             <label class="control-label" for="password">City</label>
                             <div class="controls form-group">

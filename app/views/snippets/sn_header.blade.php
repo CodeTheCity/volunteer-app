@@ -30,9 +30,7 @@
 			@endif 
 		</ul>
 		<ul class="nav pull-right navbar-nav">
-			@if (Sentry::check())
-			<li class="divider-vertical"></li>							
-			<li class="navbar-text">{{ Sentry::getUser()->email }}</li>
+			@if (Sentry::check())						
 			<li class="divider-vertical"></li>
 			<li {{ (Request::is('users/show/' . Sentry::getUser()->id) ? 'class="active"' : '') }}><a href="{{ URL::to('/users/show/'.Sentry::getUser()->id) }}">Account</a></li>
 			<li><a href="{{ URL::to('users/logout') }}">Logout</a></li>

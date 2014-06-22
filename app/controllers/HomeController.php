@@ -30,8 +30,6 @@ class HomeController extends BaseController {
 		$locations = Location::all();
 		$location_assigned = $group->locations->lists('id');
 
-	
-
 		//for an oppurtunity if and skills match then check against location
 		$skillmatches = Skill::with('opportunities')->with('users')->has('opportunities')->has('users')->get();	
 		//if the oppurtunity and location match send email and display in Matches on feed

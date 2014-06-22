@@ -53,7 +53,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'noreply@laravel-boilerplate.com', 'name' => 'Laravel Boilerplate'),
+	'from' => array('address' => 'noreply@codethecity.org', 'name' => 'Volunteer App'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -92,6 +92,6 @@ return array(
 	|
 	*/
 
-	'password' => 'TEST',
+	'password' => 'mark3792',
 
 );

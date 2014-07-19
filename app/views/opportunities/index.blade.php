@@ -14,6 +14,7 @@
 				<th>Title</th>
 				<th>Details</th>
 				<th>Travel Information</th>
+				<th>Status</th>
 				<th>Date</th>
 				<th>Location</th>	
 				<th>&nbsp;</th>
@@ -26,6 +27,7 @@
 					<td><a href="/opportunities/{{{ $opportunity->id }}}">{{{ $opportunity->opportunity_title }}}</a></td>
 					<td>{{{ $opportunity->opportunity_detail }}}</td>
 					<td>{{{ $opportunity->opportunity_travel_information }}}</td>
+					<td>{{{ $opportunity->opportunity_status }}}</td>
 					<td>{{{ $opportunity->opportunity_date }}}</td>
 					<td>{{{ $opportunity->location->location_name }}}</td>
 			

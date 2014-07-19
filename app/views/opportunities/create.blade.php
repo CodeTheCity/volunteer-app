@@ -26,6 +26,12 @@
               {{ Form::text('opportunity_title', Input::old('opportunity_title'), array('class'=>'form-control', 'placeholder'=>'Title')) }}
             </div>
         </div>
+        <div class="form-group">
+            {{ Form::label('opportunity_status', 'Status:', array('class'=>'col-md-2 control-label')) }}
+            <div class="col-sm-10">
+            {{ Form::select('opportunity_status', array('Open' => 'Open', 'Closed' => 'Closed' ),  Input::old('opportunity_status'), array('class'=>'form-control', 'placeholder'=>'')) }}
+            </div>
+        </div>
 
         <div class="form-group">
             {{ Form::label('opportunity_detail', 'Details:', array('class'=>'col-md-2 control-label')) }}

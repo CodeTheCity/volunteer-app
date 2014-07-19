@@ -79,7 +79,7 @@ return array(
 	|
 	*/
 
-	'username' => 'innesm4@gmail.com',
+	'username' => 'laraveltesting@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -92,6 +92,6 @@ return array(
 	|
 	*/
 
-	'password' => 'test',
+	'password' => '3Nd4kPa4',
 
 );

@@ -40,8 +40,6 @@ class HomeController extends BaseController {
 
 		$opportunitymatches = Opportunity::with('location')->with('skills')->get();		
 
-		//return $skillmatches;
-
 		return View::make('hello', compact('skillmatches', 'opportunitymatches', 'skills', 'assigned', 'locations', 'location_assigned','events'));
 
 		}

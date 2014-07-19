@@ -11,7 +11,12 @@ Volunteer
 
     <div class="row centered">
         <div class="col-lg-8 col-lg-offset-2 w">
-            <h1>Volunteer App</h1>
+        @if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
+        <h1>Volunteer App - Logged in as Admin</h1>
+        @else    
+        <h1>Volunteer App</h1>
+        @endif
+            
         </div>
     </div>   
     

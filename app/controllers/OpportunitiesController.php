@@ -56,6 +56,7 @@ class OpportunitiesController extends BaseController {
 		$input = [
 			'opportunity_title' => Input::get('opportunity_title'),
 			'opportunity_detail' => Input::get('opportunity_detail'),
+			'opportunity_status' => Input::get('opportunity_status'),
 			'opportunity_travel_information' => Input::get('opportunity_travel_information'),
 			'opportunity_date' => Input::get('opportunity_date'),
 			'location_id' => Input::get('location_id'),
@@ -135,6 +136,7 @@ class OpportunitiesController extends BaseController {
 		$input = [
 			'opportunity_title' => Input::get('opportunity_title'),
 			'opportunity_detail' => Input::get('opportunity_detail'),
+			'opportunity_status' => Input::get('opportunity_status'),
 			'opportunity_travel_information' => Input::get('opportunity_travel_information'),
 			'opportunity_date' => Input::get('opportunity_date'),
 			'location_id' => Input::get('location_id'),

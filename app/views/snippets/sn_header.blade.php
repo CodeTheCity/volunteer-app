@@ -22,8 +22,6 @@
 			<li {{ (Request::is('/') ? 'class="active"' : '') }}><a href="{{ URL::to('/') }}">Home</a></li>
 			@endif
 			@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
-				<li {{ (Request::is('users*') ? 'class="active"' : '') }}><a href="{{ URL::to('/users') }}">Users</a></li>
-				<li {{ (Request::is('groups*') ? 'class="active"' : '') }}><a href="{{ URL::to('/groups') }}">Groups</a></li>
 				<li {{ (Request::is('skills*') ? 'class="active"' : '') }}><a href="{{ URL::to('/skills') }}">Skills</a></li>
 				<li {{ (Request::is('opportunities*') ? 'class="active"' : '') }}><a href="{{ URL::to('/opportunities') }}">Opportunities</a></li>
 				<li {{ (Request::is('locations*') ? 'class="active"' : '') }}><a href="{{ URL::to('/locations') }}">Locations</a></li>
